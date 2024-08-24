@@ -41,7 +41,11 @@ public partial class OsuApiClient
   /// </summary>
   private readonly HttpClient _http = new()
   {
-    BaseAddress = new Uri("https://osu.ppy.sh/api/v2/")
+    BaseAddress = new Uri("https://osu.ppy.sh/api/v2/"),
+    DefaultRequestHeaders =
+    {
+      { "X-API-Version", "20220704" }
+    }
   };
 
   /// <summary>
