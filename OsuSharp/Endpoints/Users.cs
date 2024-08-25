@@ -152,7 +152,10 @@ public partial class OsuApiClient
   {
     string rulesetStr = ruleset is null ? "" : typeof(Ruleset).GetField(ruleset.ToString()!)!.GetCustomAttribute<DescriptionAttribute>()!.Description;
 
-    return await GetFromJsonAsync<User>($"users/{userIdentifier}/{rulesetStr}");
+    return await GetFromJsonAsync<User>($"users/{userIdentifier}/{rulesetStr}", new Dictionary<string, object?>()
+    {
+      {"key", userIdentifier.StartsWith('@') ? "username" : "id"}
+    });
   }
 
   /// <summary>
