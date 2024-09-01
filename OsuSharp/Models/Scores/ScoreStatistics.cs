@@ -14,19 +14,19 @@ public class ScoreStatistics
   /// The amount of 300s in this score.
   /// </summary>
   [JsonProperty("count_300")]
-  public int Count300 { get; private set; }
+  public int? Count300 { get; private set; }
 
   /// <summary>
   /// The amount of 100s in this score.
   /// </summary>
   [JsonProperty("count_100")]
-  public int Count100 { get; private set; }
+  public int? Count100 { get; private set; }
 
   /// <summary>
   /// The amount of 50s in this score.
   /// </summary>
   [JsonProperty("count_50")]
-  public int Count50 { get; private set; }
+  public int? Count50 { get; private set; }
 
   /// <summary>
   /// The amount of gekis in this score. This will be null if the statistic is not relevant for the ruleset.
