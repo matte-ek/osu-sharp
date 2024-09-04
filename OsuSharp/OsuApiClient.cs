@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Reflection;
 using System.Web;
+using Serilog;
 
 namespace OsuSharp;
 
@@ -84,6 +85,8 @@ public partial class OsuApiClient
 
     try
     {
+      Log.Verbose($"OsuApi: Requesting a new access token");
+      
       // Request a new access token and parses the JSON in the response into a response object.
       var response = await _http.PostAsync("https://osu.ppy.sh/oauth/token", new FormUrlEncodedContent(_authorizationBody));
       AccessTokenResponse? apResponse = JsonConvert.DeserializeObject<AccessTokenResponse>(await response.Content.ReadAsStringAsync())
@@ -131,6 +134,8 @@ public partial class OsuApiClient
       if (method == HttpMethod.Post)
         message.Content = JsonContent.Create(parameters);
 
+      Log.Verbose($"OsuApi: Sending API request to endpoint {url}");
+      
       // Send the request and validate the response. If 404 is returned, return null.
       HttpResponseMessage response = await _http.SendAsync(message);
       if (response.StatusCode == HttpStatusCode.NotFound)
