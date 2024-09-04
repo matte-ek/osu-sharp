@@ -15,6 +15,17 @@ This wrapper <ins>currently only supports client credential authorization</ins>.
 <i>Made with ❤️ by minisbett</i>
 </div>
 
+# Fork
+
+This is a hopefully temporary fork since some features I need aren't added to upstream yet, and as of writing I think the original author (minisbett) is busy with other stuff, so rolling my own for now. Specifically:
+
+* Add mods and ruleset paramater to `GetDifficultyAttributes`
+* Fix booleans not being encoded as a parameter
+* Add the 'F' grade
+* Specify older version of the API for a previous score model (the older score model was in the project already, didn't want to update myself for now)
+* Use the correct key for the user endpoint
+* Add nullable to some score statistics properties
+
 # Getting Started
 
 The methods for accessing the API can be found in the `OsuApiClient` class. When creating an instance, you will need to specify the client ID and client secret, as found in your [osu! settings](https://osu.ppy.sh/home/account/edit#oauth).  
