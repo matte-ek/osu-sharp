@@ -106,14 +106,17 @@ public partial class OsuApiClient
   /// </summary>
   /// <param name="beatmapId">The ID of the beatmap to receive the score of.</param>
   /// <param name="ruleset">Optional. The ruleset in which the score was set.</param>
+  /// <param name="mods">Optional. Only retrieve scores with specific mods</param>
+  /// <param name="legacyOnly">Optional. Whether to use the new scoring system or not.</param>
   /// <returns>The beatmap user score or null, if the beatmap or user was not found.</returns>
-  public async Task<Score[]?> GetBeatmapScoresAsync(int beatmapId, Ruleset? ruleset = null, string? mods = null)
+  public async Task<Score[]?> GetBeatmapScoresAsync(int beatmapId, Ruleset? ruleset = null, string? mods = null, bool legacyOnly = false)
   {
     // Send the request and return the score objects.
     return await GetFromJsonAsync<Score[]>($"beatmaps/{beatmapId}/scores", new Dictionary<string, object?>()
     {
       { "mode", ruleset },
-      { "mods", mods }
+      { "mods", mods }, 
+      { "legacy_only", legacyOnly }
     }, x => x["scores"]);
   }
 
